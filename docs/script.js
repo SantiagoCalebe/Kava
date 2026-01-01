@@ -89,7 +89,7 @@ function type() {
 
 type();
 
-/* Smooth scroll */
+/* Smooth scroll, i took this from other project of mine. */
 (() => {
   const html = document.documentElement;
 
