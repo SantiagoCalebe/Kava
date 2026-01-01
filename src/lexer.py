@@ -40,12 +40,12 @@ class Lexer:
             return int(result)
 
     def read_string(self):
-        self.advance()  # skip opening quote
+        self.advance()
         result = ''
         while self.current_char and self.current_char != '"':
             result += self.current_char
             self.advance()
-        self.advance()  # skip closing quote
+        self.advance()
         return result
 
     def read_identifier(self):
