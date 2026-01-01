@@ -1,5 +1,0 @@
-# Should display: "Santiago"
-
-var name = "Santiago";
-
-print name;

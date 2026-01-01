@@ -1,7 +1,0 @@
-# Should display: "Hello!"
-
-func hello() {
-    print "Hello!";
-}
-
-hello();

@@ -1,5 +1,0 @@
-# Should display: "Bigger"
-
-if (10 > 5) {
-    print "Bigger";
-}

@@ -1,5 +1,0 @@
-# Should display: 18
-
-var age[int] = 18;
-
-print age;

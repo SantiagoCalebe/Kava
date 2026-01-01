@@ -1,3 +1,0 @@
-# Should display: True
-
-print 10 > 5;
