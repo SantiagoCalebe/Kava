@@ -131,5 +131,7 @@ The Kava interpreter is built using a traditional compiler pipeline:
 - Errors: Runtime errors are printed in red
 - Scoping: Parameters shadow globals; proper cleanup on return
 
+## Special Thanks
+[@corecathx](https://github.com/corecathx/) - Inspiration, by [RSL](https://github.com/corecathx/RSL)
 
 ### Made with 💗 by Santiago, aka. Kava developer.
