@@ -1,0 +1,9 @@
+name: Feature Request
+description: Request something.
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: What feature do you want to get added on Kava?
+    validations:
+      required: true

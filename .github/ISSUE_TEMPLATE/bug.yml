@@ -1,0 +1,29 @@
+name: Bug report
+description: Report bugs with Kava here.
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe your bug here."
+    validations:
+      required: true
+
+  - type: textarea
+    id: terminal
+    attributes:
+      label: "Command Prompt/Terminal logs ()"
+      render: bash
+    validations:
+      required: true
+
+  - type: dropdown
+    id: btarget
+    attributes:
+      label: "What is your build target?"
+      options:
+        - "Windows"
+        - "Linux"
+        - "Mac"
+    validations:
+      required: true
