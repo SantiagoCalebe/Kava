@@ -1,8 +1,12 @@
-import urllib.request
+def _parse(v):
+    return tuple(map(int, v.split(".")))
 
-def ifUpdate(local_version, url):
+def hasUpdate():
+    VERSION_URL = "https://raw.githubusercontent.com/SantiagoCalebe/Kava/refs/heads/main/gitVersion.txt"
+
     try:
-        with urllib.request.urlopen(url) as r:
-            return r.read().decode().strip() != local_version
+        with urllib.request.urlopen(VERSION_URL) as r:
+            remote = r.read().decode().strip()
+            return _parse(remote) > _parse(KavaVersion.VERSION)
     except:
         return False
