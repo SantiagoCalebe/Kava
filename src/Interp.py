@@ -27,12 +27,15 @@ def main():
         print("\n[KAVA] Operation ended with with exit code 1.")
         input("Press [ ENTER ] to close...")
         sys.exit(1)
+
     filename = sys.argv[1]
+
     if not filename.endswith('.kava'):
         print(f"\n\033[91m[KAVA v. {KavaVersion}] - ERROR: File must have a .kava extension\033[0m")
         print("\n[KAVA] Operation ended with with exit code 1.")
         input("Press [ ENTER ] to close...")
         sys.exit(1)
+
     try:
         with open(filename, 'r') as f:
             text = f.read()
@@ -40,6 +43,7 @@ def main():
         print(f"\n\033[91m[KAVA v. {KavaVersion}] - ERROR: File {filename} not found.\033[0m")
         print("\n[KAVA] Operation ended with with exit code 1.")
         input("Press [ ENTER ] to close...")
+        sys.exit(1)
 
     try:
         lexer = Lexer(text)
@@ -48,12 +52,20 @@ def main():
         statements = parser.parse()
         interpreter = Interpreter()
         interpreter.interpret(statements)
+
         if 'main' in interpreter.functions:
             from ast import Call
             main_call = Call('main', [])
             interpreter.visit(main_call)
+
         interpreter.interpret([])
+
         print("\033[92m\n[KAVA] Operation ended with exit code 0.\033[0m")
+
+        if hasUpdate():
+            print(f"\n\033[91m[KAVA v. {KavaVersion}] - Your Kava version is outdated! Update now!\033[0m")
+            print(f"\033[91mhttps://github.com/santiagocalebe/Kava/releases/latest\033[0m")
+
         input("\033[92mPress [ ENTER ] to close...\033[0m")
 
     except KavaError as e:
@@ -61,6 +73,7 @@ def main():
         print("\n[KAVA] Operation ended with with exit code 1.")
         input("Press [ ENTER ] to close...")
         sys.exit(1)
+
     except Exception as e:
         print(f"\n\033[91m[KAVA v. {KavaVersion}] - ERROR: ({filename}) [N/A]: Unexpected error: {e}\033[0m")
         print("\n[KAVA] Operation ended with with exit code 1.")
