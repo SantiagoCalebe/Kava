@@ -52,7 +52,7 @@ jobs:
           ) else (
             pyinstaller --onefile --name Kava --icon ..\art\Icon.ico Interp.py
           )
-
+ 
       - uses: actions/upload-artifact@v4
         with:
           name: Kava-${{ runner.os }}
