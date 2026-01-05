@@ -9,6 +9,9 @@ on:
     branches: [ main ]
     paths-ignore:
       - docs/**
+      - CHANGELOG.md
+      - README.md
+      - gitVersion.txt
   workflow_dispatch:
 
 jobs:
@@ -37,30 +40,40 @@ jobs:
             echo "$KAVA_METADATA" | base64 --decode > art/buildScripts/metadata.txt
           fi
 
-      - name: Build (Linux / macOS)
-        if: runner.os != 'Windows'
-        shell: bash
-        run: |
-          cd src
-          rm -f Kava.spec
-          if [ -f ../art/buildScripts/metadata.txt ]; then
-            pyinstaller --onefile --name Kava --icon ../art/Icon.ico --version-file ../art/buildScripts/metadata.txt Interp.py
-          else
-            pyinstaller --onefile --name Kava --icon ../art/Icon.ico Interp.py
-          fi
-
       - name: Build (Windows)
         if: runner.os == 'Windows'
         shell: cmd
         run: |
           cd src
           if exist Kava.spec del Kava.spec
-          if exist ..\art\buildScripts\metadata.txt (
-            pyinstaller --onefile --name Kava --icon ..\art\Icon.ico --version-file ..\art\buildScripts\metadata.txt Interp.py
+
+          if exist ..\art\Icon.ico (
+            if exist ..\art\buildScripts\metadata.txt (
+              pyinstaller --onefile --name Kava --paths src --icon ..\art\Icon.ico --version-file ..\art\buildScripts\metadata.txt Interp.py
+            ) else (
+              pyinstaller --onefile --name Kava --paths src --icon ..\art\Icon.ico Interp.py
+            )
           ) else (
-            pyinstaller --onefile --name Kava --icon ..\art\Icon.ico Interp.py
+            if exist ..\art\buildScripts\metadata.txt (
+              pyinstaller --onefile --name Kava --paths src --version-file ..\art\buildScripts\metadata.txt Interp.py
+            ) else (
+              pyinstaller --onefile --name Kava --paths src Interp.py
+            )
           )
- 
+
+      - name: Build (Linux / macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cd src
+          rm -f Kava.spec
+
+          if [ -f ../art/buildScripts/metadata.txt ]; then
+            pyinstaller --onefile --name Kava --paths src Interp.py
+          else
+            pyinstaller --onefile --name Kava --paths src Interp.py
+          fi
+
       - uses: actions/upload-artifact@v4
         with:
           name: Kava-${{ runner.os }}
