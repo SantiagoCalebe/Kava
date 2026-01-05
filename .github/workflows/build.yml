@@ -58,7 +58,7 @@ jobs:
         run: |
           if [ -n "$KAVA_METADATA" ]; then
             mkdir -p art/buildScripts
-            echo "$KAVA_METADATA" | base64 --decode > art/buildScripts/metadata.txt
+            printf "%s" "$KAVA_METADATA" | base64 --decode > art/buildScripts/metadata.txt
           fi
       - run: |
           cd src
@@ -83,7 +83,7 @@ jobs:
         run: |
           if [ -n "$KAVA_METADATA" ]; then
             mkdir -p art/buildScripts
-            echo "$KAVA_METADATA" | base64 --decode > art/buildScripts/metadata.txt
+            printf "%s" "$KAVA_METADATA" | base64 --decode > art/buildScripts/metadata.txt
           fi
       - run: |
           cd src
