@@ -50,15 +50,15 @@ jobs:
 
           if exist ..\art\Icon.ico (
             if exist ..\art\buildScripts\metadata.txt (
-              pyinstaller --onefile --name Kava --paths src --icon ..\art\Icon.ico --version-file ..\art\buildScripts\metadata.txt Interp.py
+              pyinstaller --onefile --name Kava --paths . --icon ..\art\Icon.ico --version-file ..\art\buildScripts\metadata.txt Interp.py
             ) else (
-              pyinstaller --onefile --name Kava --paths src --icon ..\art\Icon.ico Interp.py
+              pyinstaller --onefile --name Kava --paths . --icon ..\art\Icon.ico Interp.py
             )
           ) else (
             if exist ..\art\buildScripts\metadata.txt (
-              pyinstaller --onefile --name Kava --paths src --version-file ..\art\buildScripts\metadata.txt Interp.py
+              pyinstaller --onefile --name Kava --paths . --version-file ..\art\buildScripts\metadata.txt Interp.py
             ) else (
-              pyinstaller --onefile --name Kava --paths src Interp.py
+              pyinstaller --onefile --name Kava --paths . Interp.py
             )
           )
 
