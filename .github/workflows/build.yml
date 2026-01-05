@@ -23,7 +23,7 @@ jobs:
         env:
           KAVA_METADATA: ${{ secrets.KAVA_METADATA }}
         run: |
-          if not "%KAVA_METADATA%"=="" (
+          if defined KAVA_METADATA (
             mkdir art\buildScripts 2>nul
             echo %KAVA_METADATA% > metadata.b64
             certutil -decode metadata.b64 art\buildScripts\metadata.txt
