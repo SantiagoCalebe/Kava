@@ -123,7 +123,7 @@ The Kava interpreter is built using a traditional compiler pipeline:
 - **Lexer** (`lexer.py`): Converts source code into tokens
 - **Parser** (`parser.py`): Builds an AST using recursive descent
 - **Interpreter** (`interpreter.py`): Executes code while tracking variables and functions
-- **AST** (`ast.py`): Defines syntax tree nodes
+- **AST** (`KavaAst.py`): Defines syntax tree nodes
 
 **Key design choices**:
 - Dynamic Typing: Variables can optionally specify types `[type]`
